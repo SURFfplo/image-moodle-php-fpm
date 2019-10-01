@@ -22,13 +22,16 @@ RUN apk update && apk add --no-cache postgresql-dev icu-dev zlib-dev libpng-dev 
     && docker-php-ext-install pgsql pdo_pgsql zip gd soap xmlrpc opcache xsl intl exif
 
 # Config
-COPY conf/php-fpm-entrypoint.sh /usr/local/bin/php-fpm-entrypoint
+COPY conf/php-fpm-entrypoint.sh /entrypoint.sh
     
 # change ownership 
 RUN apk --no-cache add shadow && usermod -u 1000 www-data
 
 WORKDIR ${WEB_DOCUMENT_ROOT}
 
-ENTRYPOINT ["php-fpm-entrypoint"]
+# copy script to configure stuff
+COPY entrypoint.sh /entrypoint.sh
 
+# add my entrypoint, but keep php entrypoint and cmd as well
+ENTRYPOINT ["/entrypoint.sh", "docker-php-entrypoint"]
 CMD ["php-fpm"]
