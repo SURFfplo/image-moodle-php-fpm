@@ -1,5 +1,10 @@
 FROM php:7.1-fpm-alpine
 
+LABEL Description="image for moodle"
+LABEL image="moodle-php-fpm"
+LABEL versie="0.1"
+LABEL datum="2019 10 01"
+
 ARG DOCUMENT_ROOT=/var/www/html
 ARG MY_TZ=Europe/Amsterdam
 
