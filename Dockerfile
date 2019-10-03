@@ -30,6 +30,5 @@ RUN apk --no-cache add shadow && usermod -u 1000 www-data
 WORKDIR ${WEB_DOCUMENT_ROOT}
 
 # add my entrypoint, but keep php entrypoint and cmd as well
-#ENTRYPOINT ["/entrypoint.sh", "docker-php-entrypoint"]
-#CMD ["php-fpm"]
-ENTRYPOINT ["/entrypoint.sh php-fpm"]
+ENTRYPOINT ["/entrypoint.sh", "docker-php-entrypoint"]
+CMD ["php-fpm"]
