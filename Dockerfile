@@ -15,7 +15,7 @@ RUN mkdir /var/moodledata \
 && mkdir /var/moodle_behat_output \
 && chmod 777 /var/moodledata
 
-RUN apk update && apk add --no-cache postgresql-dev icu-dev zlib-dev libpng-dev libxml2-dev libxslt-dev \
+RUN apk update && apk add --no-cache bash postgresql-dev icu-dev zlib-dev libpng-dev libxml2-dev libxslt-dev \
     $PHPIZE_DEPS \
     && docker-php-ext-configure pgsql \
     && docker-php-ext-configure intl \
